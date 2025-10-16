@@ -1,25 +1,23 @@
 import { initPlasmicLoader } from "@plasmicapp/loader-nextjs";
+import SceneViewer from "./src/components/SceneViewer"; // Adjust path if needed
 
 export const PLASMIC = initPlasmicLoader({
   projects: [
     {
-      id: "uQmBNRjX6qh8mPhDPoUqEr",
-      token: "QusNbCiXU3SYIJQ9AsbA08vlKpfkLbiKrfSoKo1eC2qkL5g7dl6haPTpq6pRLcU8hMYH6HBk7EaFqi7K7Mkg",
+      id: "uQmBNRJXq8hBmPhDPoUgEr",
+      token: "QuSNbC1JX3YSI7JQ9AsbA08VIkpfkblkrfSoKoleC2qkL5g7d16haPTpq6pRLcUb8hMYH6HBK7Eafqi7K7Mg",
     },
   ],
-
-  // By default Plasmic will use the last published version of your project.
-  // For development, you can set preview to true, which will use the unpublished
-  // project, allowing you to see your designs without publishing.  Please
-  // only use this for development, as this is significantly slower.
-  preview: false,
+  preview: false, // ✅ Correct placement inside the config object
 });
 
-// You can register any code components that you want to use here; see
-// https://docs.plasmic.app/learn/code-components-ref/
-// And configure your Plasmic project to use the host url pointing at
-// the /plasmic-host page of your nextjs app (for example,
-// http://localhost:3000/plasmic-host).  See
-// https://docs.plasmic.app/learn/app-hosting/#set-a-plasmic-project-to-use-your-app-host
-
-// PLASMIC.registerComponent(...);
+// ✅ Register your custom component
+PLASMIC.registerComponent(SceneViewer, {
+  name: "SceneViewer",
+  props: {
+    sceneId: {
+      type: "string",
+      defaultValue: "Home",
+    },
+  },
+});
